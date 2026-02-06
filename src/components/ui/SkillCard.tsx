@@ -48,12 +48,6 @@ export const SkillCard = ({ skill, index }: SkillCardProps) => {
             />
           </div>
         </div>
-
-        <div className="skill-card-category">
-          <span className="skill-card-category-badge">
-            {skill.category}
-          </span>
-        </div>
       </div>
     </motion.div>
   );

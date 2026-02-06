@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import { Button } from './ui/Button';
-import { useNavigate } from 'react-router-dom';
+import { FaGithub, FaEnvelope, FaInstagram } from 'react-icons/fa';
+// import { Button } from './ui/Button';
+// import { useNavigate } from 'react-router-dom';
 
 // Mark which words should use encryption effect (true = encrypted, false = normal typing)
 const titles = [
@@ -22,7 +22,6 @@ export const Hero = () => {
   const [scrambledVersion, setScrambledVersion] = useState('');
   const [decryptIndex, setDecryptIndex] = useState(0);
   const [phase, setPhase] = useState<'building' | 'decrypting' | 'holding' | 'deleting'>('building');
-  const navigate = useNavigate();
 
   const getRandomChar = (): string => {
     return ENCRYPTED_CHARS[Math.floor(Math.random() * ENCRYPTED_CHARS.length)];
@@ -188,7 +187,8 @@ export const Hero = () => {
           </motion.p>
 
 
-          <motion.div
+          {/* Temporarily hidden - Portfolio and Contact pages */}
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -200,7 +200,7 @@ export const Hero = () => {
             <Button onClick={() => navigate('/contact')} variant="outline" size="lg">
               Get In Touch
             </Button>
-          </motion.div>
+          </motion.div> */}
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -209,9 +209,9 @@ export const Hero = () => {
             className="hero-socials"
           >
             {[
-              { icon: FaGithub, href: 'https://github.com' },
-              { icon: FaLinkedin, href: 'https://linkedin.com' },
-              { icon: FaEnvelope, href: 'mailto:your.email@example.com' },
+              { icon: FaGithub, href: 'https://github.com/AliMortada-SE', label: 'GitHub' },
+                { icon: FaInstagram, href: 'https://instagram.com/alimortada.se/', label: 'Instagram' },
+                { icon: FaEnvelope, href: 'mailto:alimortada.se@gmail.com', label: 'Email' },
             ].map((social, index) => (
               <motion.a
                 key={index}

@@ -345,6 +345,9 @@
   border: 1px solid #1f2937;
   border-radius: 0.75rem;
   padding: 1.5rem;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
   transition: all 0.3s ease;
 }
 
@@ -398,6 +401,7 @@
 }
 
 .skill-card-proficiency {
+  margin-top: auto;
   margin-bottom: 0.5rem;
 }
 

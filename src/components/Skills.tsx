@@ -1,18 +1,8 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { skills } from '../data/skills';
 import { SkillCard } from './ui/SkillCard';
 
-const categories = ['All', 'Networking', 'Programming', 'Web Development', 'System Design'];
-
 export const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
-
-  const filteredSkills =
-    activeCategory === 'All'
-      ? skills
-      : skills.filter((skill) => skill.category === activeCategory);
-
   return (
     <section className="skills">
       <div className="container">
@@ -33,30 +23,9 @@ export const Skills = () => {
           </p>
         </motion.div>
 
-        {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="skills-filter"
-        >
-          {categories.map((category) => (
-            <motion.button
-              key={category}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setActiveCategory(category)}
-              className={`skills-filter-btn ${activeCategory === category ? 'active' : ''}`}
-            >
-              {category}
-            </motion.button>
-          ))}
-        </motion.div>
-
         {/* Skills Grid */}
         <motion.div layout className="skills-grid">
-          {filteredSkills.map((skill, index) => (
+          {skills.map((skill, index) => (
             <SkillCard key={skill.name} skill={skill} index={index} />
           ))}
         </motion.div>
@@ -70,10 +39,10 @@ export const Skills = () => {
           className="skills-stats"
         >
           {[
-            { value: '5+', label: 'Years Experience' },
-            { value: '50+', label: 'Projects Completed' },
-            { value: '12+', label: 'Technologies' },
-            { value: '100%', label: 'Dedication' },
+            { value: '4+', label: 'Years Experience' },
+            { value: '7+', label: 'Projects Completed' },
+            { value: '15+', label: 'Technologies' },
+            { value: '20g', label: 'Coffee per day' },
           ].map((stat, index) => (
             <motion.div
               key={index}

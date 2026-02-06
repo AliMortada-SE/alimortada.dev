@@ -1,17 +1,15 @@
 import {
-  FaReact,
-  FaServer,
   FaDatabase,
+  FaGlobe,
   FaLock,
-  FaGitAlt
+  FaNetworkWired,
+  FaTerminal
 } from 'react-icons/fa';
 import {
   SiCplusplus,
-  SiJavascript,
-  SiTypescript,
-  SiNodedotjs,
-  SiSocketdotio,
-  SiLinux
+  SiC,
+  SiGo,
+  SiArchlinux,
 } from 'react-icons/si';
 import type { Skill } from '../types';
 
@@ -19,85 +17,65 @@ export const skills: Skill[] = [
   {
     name: 'C++',
     icon: SiCplusplus,
-    description: 'WebSockets, TCP/IP, real-time systems, low-latency communication',
+    description: 'MultiThreading, Encryption, Networking, Binary level Control ,RTS ,Servers (C++17/20)',
     proficiency: 95,
-    category: 'Networking'
-  },
-  {
-    name: 'C++ Development',
-    icon: SiCplusplus,
-    description: 'High-performance systems, memory management, STL, modern C++17/20',
-    proficiency: 98,
     category: 'Programming'
   },
   {
-    name: 'WebSocket Protocol',
-    icon: SiSocketdotio,
-    description: 'Real-time bidirectional communication, custom protocols, socket.io',
-    proficiency: 92,
+    name: 'C',
+    icon: SiC,
+    description: 'POSIX APIs, Memory management, IPC, Process control, Low-level system programming, Kernel Programming(Basic).',
+    proficiency: 82,
+    category: 'Programming'
+  },
+  {
+    name: 'Go',
+    icon: SiGo,
+    description: 'Concurrent services, Network tools, Backend services, High-performance servers.',
+    proficiency: 76,
     category: 'Networking'
   },
   {
-    name: 'React.js',
-    icon: FaReact,
-    description: 'Modern React, hooks, TypeScript, state management, performance optimization',
-    proficiency: 90,
+    name: 'Linux',
+    icon: SiArchlinux,
+    description: 'epoll, File descriptors, Processes, fork/exec , IPC, System calls, Resource management (Arch Linux)',
+    proficiency: 92,
     category: 'Web Development'
   },
   {
-    name: 'TypeScript',
-    icon: SiTypescript,
-    description: 'Type-safe development, interfaces, generics, advanced types',
+    name: 'DevOps',
+    icon: FaTerminal,
+    description: 'Linux server management, SSH-based remote control, TCP/WebSocket networking & deployment',
     proficiency: 88,
     category: 'Programming'
   },
   {
-    name: 'Node.js',
-    icon: SiNodedotjs,
-    description: 'Backend services, REST APIs, Express, async programming',
-    proficiency: 87,
+    name: 'Networking',
+    icon: FaNetworkWired,
+    description: 'TCP/IP, WebSocket (from scratch), Event-driven servers, Encrypted communication.',
+    proficiency: 86,
     category: 'Web Development'
   },
   {
-    name: 'System Architecture',
-    icon: FaServer,
-    description: 'Distributed systems, microservices, scalable architectures',
-    proficiency: 85,
+    name: 'Encryption',
+    icon: FaLock,
+    description: 'Custom encryption algorithms, Secure protocols, Encrypted databases, Binary-safe design (Basics in Reverse Engineering)',
+    proficiency: 83,
     category: 'System Design'
   },
   {
     name: 'Database Design',
     icon: FaDatabase,
-    description: 'SQL, NoSQL, optimization, indexing, query performance',
-    proficiency: 82,
-    category: 'System Design'
-  },
-  {
-    name: 'Network Security',
-    icon: FaLock,
-    description: 'Encryption, authentication, secure protocols, vulnerability assessment',
+    description: 'Database engines from scratch, Fully encrypted storage, Performance-oriented design.',
     proficiency: 80,
-    category: 'Networking'
-  },
-  {
-    name: 'Linux Systems',
-    icon: SiLinux,
-    description: 'System administration, shell scripting, performance tuning',
-    proficiency: 85,
     category: 'System Design'
   },
   {
-    name: 'JavaScript',
-    icon: SiJavascript,
-    description: 'ES6+, async/await, functional programming, DOM manipulation',
-    proficiency: 92,
-    category: 'Programming'
+    name: 'Web Development',
+    icon: FaGlobe,
+    description: 'System dashboards, Control panels, HTML, CSS, Minimal JavaScript.',
+    proficiency: 70,
+    category: 'Web Development'
   },
-  {
-    name: 'DevOps & Tools',
-    icon: FaGitAlt,
-    description: 'Git, Docker, CI/CD, automation, deployment pipelines',
-    proficiency: 78,
-    category: 'System Design'
-  }
+  
 ];

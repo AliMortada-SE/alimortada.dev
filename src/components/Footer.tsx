@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaEnvelope, FaInstagram } from 'react-icons/fa';
 
 const socialLinks = [
-  { icon: FaGithub, href: 'https://github.com', label: 'GitHub' },
-  { icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: FaEnvelope, href: 'mailto:your.email@example.com', label: 'Email' },
+  { icon: FaGithub, href: 'https://github.com/AliMortada-SE', label: 'GitHub' },
+  { icon: FaInstagram, href: 'https://instagram.com/alimortada.se/', label: 'Instagram' },
+  { icon: FaEnvelope, href: 'mailto:alimortada.se@gmail.com', label: 'Email' },
+  //{ icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
 ];
 
 const navLinks = [
@@ -30,11 +31,10 @@ export const Footer = () => {
               viewport={{ once: true }}
               className="text-gradient"
             >
-              Portfolio
+              Ali Mortada
             </motion.h3>
             <p>
-              Building innovative solutions with modern technologies. Passionate about creating
-              high-performance systems and elegant user experiences.
+              Highlights of my professional journey, skills, and projects.
             </p>
           </div>
 
@@ -104,10 +104,10 @@ export const Footer = () => {
           className="footer-bottom"
         >
           <p>
-            © {currentYear} Portfolio. All rights reserved.
+            © {currentYear} Ali Mortada. All rights reserved.
           </p>
           <p className="footer-made-with">
-            Made with <FaHeart className="footer-heart" /> using React & TypeScript
+            {/* Made with <FaHeart className="footer-heart" /> using React & TypeScript */}
           </p>
         </motion.div>
       </div>

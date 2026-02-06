@@ -49,30 +49,10 @@ export const About = () => {
         </motion.div>
 
         <div className="about-grid">
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="about-image-wrapper">
-              <div className="about-image-glow" />
-              <div className="about-image-container">
-                <img
-                  src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=600&h=600&fit=crop"
-                  alt="Profile"
-                  className="about-image"
-                />
-                <div className="about-image-overlay" />
-              </div>
-            </div>
-          </motion.div>
-
           {/* Description */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="about-content"
