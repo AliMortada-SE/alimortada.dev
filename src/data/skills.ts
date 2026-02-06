@@ -1,5 +1,4 @@
 import {
-  FaNetworkWired,
   FaReact,
   FaServer,
   FaDatabase,
@@ -18,8 +17,8 @@ import type { Skill } from '../types';
 
 export const skills: Skill[] = [
   {
-    name: 'Network Programming',
-    icon: FaNetworkWired,
+    name: 'C++',
+    icon: SiCplusplus,
     description: 'WebSockets, TCP/IP, real-time systems, low-latency communication',
     proficiency: 95,
     category: 'Networking'

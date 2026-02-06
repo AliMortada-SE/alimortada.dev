@@ -4,43 +4,118 @@ import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { Button } from './ui/Button';
 import { useNavigate } from 'react-router-dom';
 
+// Mark which words should use encryption effect (true = encrypted, false = normal typing)
 const titles = [
-  'Network Engineer',
-  'C++ Developer',
-  'Full Stack Developer',
-  'System Architect'
+  { text: 'Backend & Systems Engineer', encrypted: false },
+  { text: 'Security First', encrypted: true },
+  { text: 'Low-level Networking', encrypted: false },
+  { text: 'Event-Driven Servers', encrypted: false },
+  { text: 'Linux Systems Programming', encrypted: true },
+  { text: '|C++ | C | Go', encrypted: false }
 ];
+
+const ENCRYPTED_CHARS = '!@#$%^&*()_+-=[]{}|;:\'",.&lt;&gt;?/~`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
 export const Hero = () => {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [scrambledVersion, setScrambledVersion] = useState('');
+  const [decryptIndex, setDecryptIndex] = useState(0);
+  const [phase, setPhase] = useState<'building' | 'decrypting' | 'holding' | 'deleting'>('building');
   const navigate = useNavigate();
+
+  const getRandomChar = (): string => {
+    return ENCRYPTED_CHARS[Math.floor(Math.random() * ENCRYPTED_CHARS.length)];
+  };
 
   useEffect(() => {
     const currentTitle = titles[titleIndex];
-    const timeout = setTimeout(
-      () => {
-        if (!isDeleting) {
-          if (displayText.length < currentTitle.length) {
-            setDisplayText(currentTitle.slice(0, displayText.length + 1));
+    const isEncrypted = currentTitle.encrypted;
+    const text = currentTitle.text;
+
+    const timeout = setTimeout(() => {
+      if (isEncrypted) {
+        // ENCRYPTED MODE: Build scrambled → decrypt letter by letter
+        if (phase === 'building') {
+          // Build up scrambled text character by character
+          if (displayText.length < text.length) {
+            const newChar = getRandomChar();
+            const newText = displayText + newChar;
+            setDisplayText(newText);
+            setScrambledVersion(newText); // Save the full scrambled version
           } else {
-            setTimeout(() => setIsDeleting(true), 2000);
-          }
-        } else {
-          if (displayText.length > 0) {
-            setDisplayText(currentTitle.slice(0, displayText.length - 1));
-          } else {
-            setIsDeleting(false);
-            setTitleIndex((prev) => (prev + 1) % titles.length);
+            // Finished building scrambled text, start decrypting
+            setDecryptIndex(0);
+            setPhase('decrypting');
           }
         }
-      },
-      isDeleting ? 50 : 100
-    );
+        else if (phase === 'decrypting') {
+          // Decrypt letter by letter from left to right
+          if (decryptIndex < text.length) {
+            const decrypted = text.slice(0, decryptIndex + 1);
+            const stillScrambled = scrambledVersion.slice(decryptIndex + 1);
+            setDisplayText(decrypted + stillScrambled);
+            setDecryptIndex(decryptIndex + 1);
+          } else {
+            setPhase('holding');
+          }
+        }
+        else if (phase === 'holding') {
+          setPhase('deleting');
+        }
+        else if (phase === 'deleting') {
+          if (displayText.length > 0) {
+            setDisplayText(displayText.slice(0, -1));
+          } else {
+            setTitleIndex((prev) => (prev + 1) % titles.length);
+            setPhase('building');
+            setDecryptIndex(0);
+            setScrambledVersion('');
+          }
+        }
+      } else {
+        // NORMAL MODE: Regular typing effect
+        if (phase === 'building') {
+          // Normal typing
+          if (displayText.length < text.length) {
+            setDisplayText(text.slice(0, displayText.length + 1));
+          } else {
+            setPhase('holding');
+          }
+        }
+        else if (phase === 'holding') {
+          setPhase('deleting');
+        }
+        else if (phase === 'deleting') {
+          if (displayText.length > 0) {
+            setDisplayText(displayText.slice(0, -1));
+          } else {
+            setTitleIndex((prev) => (prev + 1) % titles.length);
+            setPhase('building');
+            setDisplayText('');
+          }
+        }
+      }
+    }, getTimeout());
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, titleIndex]);
+  }, [displayText, scrambledVersion, decryptIndex, phase, titleIndex]);
+
+  const getTimeout = (): number => {
+    const isEncrypted = titles[titleIndex].encrypted;
+
+    if (isEncrypted) {
+      if (phase === 'building') return 80;      // Build scrambled speed
+      if (phase === 'decrypting') return 50;     // Decrypt speed
+      if (phase === 'holding') return 1800;      // Hold before delete
+      if (phase === 'deleting') return 50;       // Delete speed
+    } else {
+      if (phase === 'building') return 80;      // Normal typing speed
+      if (phase === 'holding') return 1800;      // Hold before delete
+      if (phase === 'deleting') return 50;       // Delete speed
+    }
+    return 100;
+  };
 
   return (
     <section className="hero">
@@ -109,9 +184,9 @@ export const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="hero-description"
           >
-            Building high-performance systems and creating seamless digital experiences
-            with cutting-edge technologies.
+            I engineer backend systems close to the metal,  where performance and control matter.
           </motion.p>
+
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
